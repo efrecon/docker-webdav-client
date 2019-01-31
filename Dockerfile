@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.8
 
 # Specify URL, username and password to communicate with the remote webdav
 # resource. When using _FILE, the password will be read from that file itself,
@@ -20,7 +20,7 @@ ENV WEBDRIVE_MOUNT=/mnt/webdrive
 # DAVFS2_ASK_AUTH=0 will set the davfs2 configuration option ask_auth to 0 for
 # that share. See the manual for the list of available options.
 
-RUN apk --no-cache add ca-certificates davfs2
+RUN apk --no-cache add ca-certificates davfs2 tini
 
 COPY *.sh /usr/local/bin/
 
@@ -31,5 +31,5 @@ VOLUME [ "/mnt/webdrive" ]
 # to then have a command that will keep listing the files under the main share.
 # Listing the files will keep the share active and avoid that the remote server
 # closes the connection.
-ENTRYPOINT [ "/usr/local/bin/docker-entrypoint.sh" ]
-CMD [ "keep.sh" ]
+ENTRYPOINT [ "tini", "-g", "--", "/usr/local/bin/docker-entrypoint.sh" ]
+CMD [ "ls.sh" ]

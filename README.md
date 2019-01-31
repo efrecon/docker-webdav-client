@@ -1,14 +1,17 @@
 # Dockerised WebDAV Client
 
-This container facilitates mounting of remote WebDAV resources into a container.
-Mounting is implemented using [davfs2] and the container makes it possible to set
-all supported davfs [configuration] options for the share. Used with the proper
-creation options, you should be able to bind-mount back the remote WebDAV onto a
-host directory in a way that makes its content available to processes (and other
-containers) on the host.
+This Docker image facilitates mounting of remote WebDAV resources into
+containers. Mounting is implemented using [davfs2] and the image makes it
+possible to set all supported davfs [configuration] options for the share. The
+image basically implements a docker [volume] on the cheap: Used with the proper
+creation options (see below) , you should be able to bind-mount back the remote
+bucket onto a host directory. This directory will make the content of the bucket
+available to processes, but also all other containers on the host. The image
+automatically unmount the remote bucket on container termination.
 
   [davfs2]: http://savannah.nongnu.org/projects/davfs2
   [configuration]: https://man.cx/davfs2.conf(5)
+  [volume]: https://docs.docker.com/storage/
 
 ## Example
 
@@ -24,7 +27,7 @@ docker run -it --rm \
     --cap-add SYS_ADMIN \
     --security-opt "apparmor=unconfined" \
     --env "WEBDRIVE_USERNAME=<YourUserName>" \
-    --env "WEBDRIVE_PASSWORD=<SuperSecretPassword" \
+    --env "WEBDRIVE_PASSWORD=<SuperSecretPassword>" \
     --env "WEBDRIVE_URL=https://dav.box.com/dav" \
     --env "DAVFS2_ASK_AUTH=0" \
     -v /mnt/tmp:/mnt/webdrive:rshared \
@@ -64,3 +67,23 @@ configuration option for this to work. Any existing option should be translated
 to uppercase and led by the keyword `DAVFS2_` to be recognised. So to set the
 davfs2 option called `ask_auth` to `0`, you would set the environment variable
 `DAVFS2_ASK_AUTH` to `0`.
+
+## Commands
+
+By default, containers based on this image will keep listing the content of the
+mounted directory at regular intervals. This is implemented by the
+[command](./ls.sh) that it is designed to execute once the remote WebDAV
+resource has been mounted. If you did not wish this behaviour, pass `empty.sh`
+as the command instead.
+
+Note that both of these commands ensure that the remote WebDAV resource is
+unmounted from the mountpoint at termination, so you should really pick one or
+the other to allow for proper operation. If the mountpoint was not unmounted,
+your mount system will be unstable as it will contain an unknown entry.
+
+Automatic unmounting is achieved through a combination of a `trap` in the
+command being executed and [tini]. [tini] is made available directly in this
+image to make it possible to run in [Swarm] environments.
+
+  [tini]: https://github.com/krallin/tini
+  [Swarm]: https://docs.docker.com/engine/swarm/
