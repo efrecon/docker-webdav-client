@@ -46,7 +46,7 @@ fi
 
 # Deal with ownership
 if [ $OWNER -gt 0 ]; then
-    useradd webdrive -u $OWNER -N -G users
+    adduser webdrive -u $OWNER -D -G users
     chown webdrive $DEST
 fi
 
