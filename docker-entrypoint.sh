@@ -29,7 +29,7 @@ unset WEBDRIVE_PASSWORD
 if [ -n "$(env | grep "DAVFS2_")" ]; then
     echo "" >> /etc/davfs2/davfs2.conf
     echo "[$DEST]" >> /etc/davfs2/davfs2.conf
-    for VAR in $(env); do 
+    for VAR in $(env); do
         if [ -n "$(echo "$VAR" | grep -E '^DAVFS2_')" ]; then
             OPT_NAME=$(echo "$VAR" | sed -r "s/DAVFS2_([^=]*)=.*/\1/g" | tr '[:upper:]' '[:lower:]')
             VAR_FULL_NAME=$(echo "$VAR" | sed -r "s/([^=]*)=.*/\1/g")
