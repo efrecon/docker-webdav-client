@@ -52,7 +52,7 @@ parametrise the container:
   the file instead of from the `WEBDRIVE_PASSWORD` variable. If that variable
   existed, it will be disregarded. This makes it easy to pass passwords using
   Docker [secrets].
-* `WEBDRIVE_MOUNT` is the location within the container where to mounte the
+* `WEBDRIVE_MOUNT` is the location within the container where to mount the
   WebDAV resource. This defaults to `/mnt/webdrive` and is not really meant to
   be changed.
 * `OWNER` is the user ID for the owner of the share inside the container.
