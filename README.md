@@ -7,7 +7,7 @@ image basically implements a docker [volume] on the cheap: Used with the proper
 creation options (see below) , you should be able to bind-mount back the remote
 bucket onto a host directory. This directory will make the content of the bucket
 available to processes, but also all other containers on the host. The image
-automatically unmount the remote bucket on container termination.
+automatically unmounts the remote bucket on container termination.
 
   [davfs2]: http://savannah.nongnu.org/projects/davfs2
   [configuration]: https://man.cx/davfs2.conf(5)
