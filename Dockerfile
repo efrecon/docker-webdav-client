@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.16
 
 # Specify URL, username and password to communicate with the remote webdav
 # resource. When using _FILE, the password will be read from that file itself,
