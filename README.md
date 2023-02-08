@@ -1,14 +1,16 @@
 # Dockerised WebDAV Client
 
-This Docker image facilitates mounting of remote WebDAV resources into
-containers. Mounting is implemented using [davfs2] and the image makes it
-possible to set all supported davfs [configuration] options for the share. The
-image basically implements a docker [volume] on the cheap: Used with the proper
-creation options (see below) , you should be able to bind-mount back the remote
-bucket onto a host directory. This directory will make the content of the bucket
-available to processes, but also all other containers on the host. The image
-automatically unmounts the remote bucket on container termination.
+This Docker [image] (also at the [GHCR]) facilitates mounting of remote WebDAV
+resources into containers. Mounting is implemented using [davfs2] and the image
+makes it possible to set all supported davfs [configuration] options for the
+share. The image basically implements a docker [volume] on the cheap: Used with
+the proper creation options (see below) , you should be able to bind-mount back
+the remote bucket onto a host directory. This directory will make the content of
+the bucket available to processes, but also all other containers on the host.
+The image automatically unmounts the remote bucket on container termination.
 
+  [image]: https://hub.docker.com/r/efrecon/davfs2
+  [GHCR]: https://github.com/efrecon/docker-webdav-client/pkgs/container/davfs2
   [davfs2]: http://savannah.nongnu.org/projects/davfs2
   [configuration]: https://man.cx/davfs2.conf(5)
   [volume]: https://docs.docker.com/storage/
