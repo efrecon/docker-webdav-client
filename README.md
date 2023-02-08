@@ -9,8 +9,8 @@ the remote bucket onto a host directory. This directory will make the content of
 the bucket available to processes, but also all other containers on the host.
 The image automatically unmounts the remote bucket on container termination.
 
-  [image]: https://hub.docker.com/r/efrecon/davfs2
-  [GHCR]: https://github.com/efrecon/docker-webdav-client/pkgs/container/davfs2
+  [image]: https://hub.docker.com/r/efrecon/webdav-client
+  [GHCR]: https://github.com/efrecon/docker-webdav-client/pkgs/container/webdav-client
   [davfs2]: http://savannah.nongnu.org/projects/davfs2
   [configuration]: https://man.cx/davfs2.conf(5)
   [volume]: https://docs.docker.com/storage/

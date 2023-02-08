@@ -26,5 +26,5 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: efrecon/davfs2
+          repository: efrecon/webdav-client
           short-description: WebDAV client for Docker with easy access to all davfs2 options

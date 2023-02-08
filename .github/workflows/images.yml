@@ -32,7 +32,7 @@ jobs:
         with:
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/efrecon/davfs2
+          tags: ghcr.io/efrecon/webdav-client
   hub:
     runs-on: ubuntu-latest
     steps:
@@ -55,4 +55,4 @@ jobs:
         with:
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: efrecon/davfs2
+          tags: efrecon/webdav-client
