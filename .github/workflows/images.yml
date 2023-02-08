@@ -57,13 +57,3 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: efrecon/davfs2
-      -
-        # Note: This uses the password, not the token as this action would
-        # otherwise not work.
-        name: Update repo description at Docker Hub
-        uses: peter-evans/dockerhub-description@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: efrecon/davfs2
-          short-description: WebDAV client for Docker with easy access to all davfs2 options
