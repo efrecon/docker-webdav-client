@@ -1,0 +1,31 @@
+name: Docker Hub Description
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+      - feature/gh-build
+    paths:
+      - 'README.md'
+
+jobs:
+  hub:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+      -
+        # Note: This uses the password, not the token as this action would
+        # otherwise not work.
+        name: Update repo description at Docker Hub
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: efrecon/davfs2
+          short-description: WebDAV client for Docker with easy access to all davfs2 options
