@@ -1,4 +1,13 @@
-FROM alpine:3.16
+FROM alpine:3.17.1
+
+# Metadata
+LABEL MAINTAINER=efrecon+github@gmail.com
+LABEL org.opencontainers.image.title="efrecon/webdav-client"
+LABEL org.opencontainers.image.description="Mount WebDAV shares from within a container and expose them to host/containers"
+LABEL org.opencontainers.image.authors="Emmanuel Frécon <efrecon+github@gmail.com>"
+LABEL org.opencontainers.image.url="https://github.com/efrecon/docker-webdav-client"
+LABEL org.opencontainers.image.documentation="https://github.com/efrecon/docker-webdav-client/README.md"
+LABEL org.opencontainers.image.source="https://github.com/efrecon/docker-webdav-client/Dockerfile"
 
 # Specify URL, username and password to communicate with the remote webdav
 # resource. When using _FILE, the password will be read from that file itself,
