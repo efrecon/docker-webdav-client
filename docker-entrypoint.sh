@@ -10,12 +10,16 @@ if [ -z "${WEBDRIVE_URL}" ]; then
 fi
 if [ -z "${WEBDRIVE_USERNAME}" ]; then
     echo "No username specified, is this on purpose?"
+    # set up user name for anonymous access:
+    WEBDRIVE_USERNAME="-"
 fi
 if [ -n "${WEBDRIVE_PASSWORD_FILE}" ]; then
     WEBDRIVE_PASSWORD=$(read ${WEBDRIVE_PASSWORD_FILE})
 fi
 if [ -z "${WEBDRIVE_PASSWORD}" ]; then
     echo "No password specified, is this on purpose?"
+    # set up password for anonymous access:
+    WEBDRIVE_PASSWORD="-"
 fi
 
 # Create secrets file and forget about the password once done (this will have
