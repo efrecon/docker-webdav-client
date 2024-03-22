@@ -1,4 +1,4 @@
-FROM alpine:3.18.3
+FROM alpine:3.19.1
 
 # Metadata
 LABEL MAINTAINER=efrecon+github@gmail.com
